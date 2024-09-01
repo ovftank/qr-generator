@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>https://app.ovfteam.com/</loc>
+      <lastmod>2024-09-01</lastmod>
+      <priority>1.00</priority>
+   </url>
+   <url>
+      <loc>https://app.ovfteam.com/qr</loc>
+      <lastmod>2024-09-01</lastmod>
+      <priority>0.80</priority>
+   </url>
+   <url>
+      <loc>https://app.ovfteam.com/images</loc>
+      <lastmod>2024-09-01</lastmod>
+      <priority>0.80</priority>
+   </url>
+   <url>
+      <loc>https://app.ovfteam.com/settings</loc>
+      <lastmod>2024-09-01</lastmod>
+      <priority>0.80</priority>
+   </url>
+</urlset>

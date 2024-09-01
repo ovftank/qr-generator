@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://app.ovfteam.com/sitemap.xml
