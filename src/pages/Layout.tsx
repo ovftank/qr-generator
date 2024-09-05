@@ -1,7 +1,6 @@
-import { DotBackground } from "@components/dot-background";
-import { FloatingDockItem } from "@components/floating-dock";
-import { FloatingDock } from "@components/floating-dock.tsx";
-import Toast, { ToastType } from "@components/toast";
+import { DotBackground } from "@components/Background";
+import { FloatingDock, FloatingDockItem } from "@components/FloatingDock";
+import Toast, { ToastType } from "@components/Toast";
 import {
   IconBrandTelegram,
   IconHome,

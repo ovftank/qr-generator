@@ -1,8 +1,8 @@
-import CreateQr from "@pages/createQr";
+import CreateQr from "@pages/CreateQr";
 import Home from "@pages/Home";
-import ImagesHistory from "@pages/imagesHistory";
-import Layout from "@pages/layout";
-import Settings from "@pages/settings";
+import ImagesHistory from "@pages/ImagesHistory";
+import Layout from "@pages/Layout";
+import Settings from "@pages/Settings";
 import {
   createBrowserRouter,
   createRoutesFromElements,

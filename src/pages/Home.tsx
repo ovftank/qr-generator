@@ -1,5 +1,5 @@
-import { Spotlight } from "@components/spotlight";
-import { TypewriterEffect } from "@components/typewriter-effect";
+import { Spotlight } from "@components/Spotlight";
+import { TypewriterEffect } from "@components/TypewriterEffect";
 import React from "react";
 
 const Home: React.FC = () => {

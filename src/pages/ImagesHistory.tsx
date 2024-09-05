@@ -1,4 +1,4 @@
-import EmptyHistoryPlaceholder from "@components/emptyHistoryPlaceholder";
+import EmptyHistoryPlaceholder from "@components/EmptyHistoryPlaceholder";
 import {
   IconBuildingBank,
   IconCalendar,

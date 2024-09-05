@@ -1,6 +1,6 @@
-import BankList from "@components/bankList";
-import QRCodeModal from "@components/qrCodeModal";
-import { ToastType } from "@components/toast";
+import BankList from "@components/BankList";
+import QRCodeModal from "@components/QRCodeModal";
+import { ToastType } from "@components/Toast";
 import {
   IconBuildingBank,
   IconCash,

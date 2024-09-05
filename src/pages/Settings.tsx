@@ -1,4 +1,4 @@
-import BankList, { Bank } from "@components/bankList";
+import BankList, { Bank } from "@components/BankList";
 import {
   IconBuildingBank,
   IconCreditCard,

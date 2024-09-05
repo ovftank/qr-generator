@@ -1,4 +1,4 @@
-import { Bank } from "@components/bankList";
+import { Bank } from "@components/BankList";
 import { openDB } from "idb";
 const DB_NAME = "qr-code-cache";
 const STORE_NAME = "qr-images";
