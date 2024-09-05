@@ -6,12 +6,30 @@ import tailwindcss from "tailwindcss";
 import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-
+import Sitemap from "vite-plugin-sitemap";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = resolve(__filename, "..");
 export default defineConfig({
   plugins: [
     react(),
+    Sitemap({
+      hostname: "https://app.ovfteam.com",
+      dynamicRoutes: ["/", "/qr", "/images", "/settings"],
+      generateRobotsTxt: true,
+      robots: [
+        {
+          userAgent: "*",
+          allow: "/",
+        },
+      ],
+      basePath: "/",
+      extensions: [".html"],
+      changefreq: 'daily',
+      priority: 1,
+      readable: true,
+      externalSitemaps: [],
+      outDir: resolve(__dirname, "dist"),
+    }),
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
@@ -80,7 +98,7 @@ export default defineConfig({
   ],
   build: {
     emptyOutDir: true,
-    sourcemap: true,
+    sourcemap: false,
   },
   server: {
     host: "0.0.0.0",
