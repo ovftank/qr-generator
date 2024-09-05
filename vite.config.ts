@@ -1,35 +1,16 @@
 import react from "@vitejs/plugin-react";
-import autoprefixer from "autoprefixer";
 import { writeFile } from "fs/promises";
 import { resolve } from "path";
 import tailwindcss from "tailwindcss";
-import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import Sitemap from "vite-plugin-sitemap";
-const __filename = fileURLToPath(import.meta.url);
 const __dirname = resolve(__filename, "..");
 export default defineConfig({
+  appType: "spa",
+  base: "/",
+  assetsInclude: ["**/*.xml"],
   plugins: [
     react(),
-    Sitemap({
-      hostname: "https://app.ovfteam.com",
-      dynamicRoutes: ["/", "/qr", "/images", "/settings"],
-      generateRobotsTxt: true,
-      robots: [
-        {
-          userAgent: "*",
-          allow: "/",
-        },
-      ],
-      basePath: "/",
-      extensions: [".html"],
-      changefreq: 'daily',
-      priority: 1,
-      readable: true,
-      externalSitemaps: [],
-      outDir: resolve(__dirname, "dist"),
-    }),
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
@@ -87,7 +68,8 @@ export default defineConfig({
       apply: "build",
       closeBundle: async () => {
         const filePath = resolve(__dirname, "dist", "_redirects");
-        const content = "/*    /index.html    200";
+        const content = `/sitemap.xml   /sitemap.xml   200
+/*             /index.html    200`;
         try {
           await writeFile(filePath, content);
         } catch (err) {
@@ -112,7 +94,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwindcss, autoprefixer],
+      plugins: [tailwindcss],
     },
   },
 });
