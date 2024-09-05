@@ -107,6 +107,7 @@ const FloatingDockMobile = ({
       <button
         onClick={() => setOpen(!open)}
         className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800"
+        aria-label="Toggle menu"
       >
         <IconLayoutNavbarCollapse className="h-5 w-5 text-white" />
       </button>
