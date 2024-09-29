@@ -1,5 +1,4 @@
 import react from "@vitejs/plugin-react";
-import { writeFile } from "fs/promises";
 import { resolve } from "path";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
@@ -62,21 +61,7 @@ export default defineConfig({
         background_color: "#000000",
         prefer_related_applications: false,
       },
-    }),
-    {
-      name: "create-redirects",
-      apply: "build",
-      closeBundle: async () => {
-        const filePath = resolve(__dirname, "dist", "_redirects");
-        const content = `/sitemap.xml   /sitemap.xml   200
-/*             /index.html    200`;
-        try {
-          await writeFile(filePath, content);
-        } catch (err) {
-          console.error(err);
-        }
-      },
-    },
+    })
   ],
   build: {
     emptyOutDir: true,
