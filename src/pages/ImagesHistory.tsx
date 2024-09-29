@@ -13,6 +13,7 @@ import {
   IconPin,
   IconPinnedOff,
   IconSearch,
+  IconShare,
   IconSquare,
   IconTrash,
   IconUser,
@@ -345,6 +346,17 @@ const QRCodeCard: React.FC<QRCodeCardProps> = ({
   onSelect,
 }) => {
   const { showToast } = useOutletContext<LayoutContext>();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
   const formatDate = (timestamp: number) => {
     const date = new Date(timestamp);
     return date.toLocaleString("vi-VN", {
@@ -366,6 +378,32 @@ const QRCodeCard: React.FC<QRCodeCardProps> = ({
       showToast("Đã sao chép mã QR", "success");
     } catch (error) {
       console.error("Failed to copy image:", error);
+    }
+  };
+
+  const handleShareImage = async (event: React.MouseEvent) => {
+    event.stopPropagation();
+    try {
+      const response = await fetch(image.url);
+      const blob = await response.blob();
+      const file = new File([blob], `QR_${image.bankName}_${Date.now()}.png`, {
+        type: "image/png",
+      });
+
+      if (isMobile && navigator.share) {
+        await navigator.share({
+          files: [file],
+          title: "QR Generator",
+          text: "QR Generator - Quản Lý Mã QR Thông Minh | OVF Team",
+        });
+      } else {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(image.url)}`;
+        window.open(facebookUrl, "_blank");
+      }
+      showToast("Đã chia sẻ mã QR thành công", "success");
+    } catch (error) {
+      console.error("Error sharing image:", error);
+      showToast("Không thể chia sẻ mã QR", "error");
     }
   };
 
@@ -460,6 +498,12 @@ const QRCodeCard: React.FC<QRCodeCardProps> = ({
             className="transition-colors hover:text-green-500 focus:text-green-500"
           >
             <IconDownload size={20} />
+          </button>
+          <button
+            onClick={handleShareImage}
+            className="transition-colors hover:text-yellow-500 focus:text-yellow-500"
+          >
+            <IconShare size={20} />
           </button>
         </div>
       </div>

@@ -3,11 +3,9 @@ import path from "path";
 import { SitemapStream } from "sitemap";
 import { fileURLToPath } from "url";
 
-// Tạo __dirname thay thế
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Các route của ứng dụng
 const routes = [
   { url: "/", changefreq: "daily", priority: 1.0 },
   { url: "/qr", changefreq: "weekly", priority: 0.8 },

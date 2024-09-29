@@ -6,6 +6,7 @@ import Settings from "@pages/Settings";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from "react-router-dom";
 const AppRouters = createRoutesFromElements([
@@ -14,6 +15,7 @@ const AppRouters = createRoutesFromElements([
     <Route key="qr" path="/qr" element={<CreateQr />} />
     <Route key="images" path="/images" element={<ImagesHistory />} />
     <Route key="settings" path="/settings" element={<Settings />} />
+    <Route key="not-found" path="*" element={<Navigate to="/" />} />
   </Route>,
 ]);
 

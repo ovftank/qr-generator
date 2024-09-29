@@ -9,6 +9,7 @@ import {
   IconDownload,
   IconFileDescription,
   IconQrcode,
+  IconShare,
   IconTemplate,
   IconUser,
   IconUserCircle,
@@ -242,6 +243,29 @@ const CreateQr: React.FC = () => {
     }
   }, [qrCodeUrl, copyImageToClipboard, showToast]);
 
+  const handleShareImage = useCallback(async () => {
+    if (!qrCodeUrl) return;
+
+    try {
+      const response = await fetch(qrCodeUrl);
+      const blob = await response.blob();
+      const file = new File([blob], "qr-code.png", { type: "image/png" });
+
+      if (isMobile && navigator.share) {
+        await navigator.share({
+          files: [file],
+          title: "QR Generator",
+          text: "QR Generator - Quản Lý Mã QR Thông Minh | OVF Team",
+        });
+      } else {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${qrCodeUrl}`;
+        window.open(facebookUrl, "_blank");
+      }
+    } catch {
+      showToast("Không thể chia sẻ mã QR", "error");
+    }
+  }, [qrCodeUrl, showToast, isMobile]);
+
   const showOptionalFields = selectedBank && isAccountValid;
 
   return (
@@ -402,6 +426,13 @@ const CreateQr: React.FC = () => {
                       </button>
                     </div>
                   </div>
+                  <button
+                    onClick={handleShareImage}
+                    className="absolute bottom-2 right-2 inline-flex h-10 w-10 animate-shimmer items-center justify-center rounded-full border border-neutral-600 bg-[linear-gradient(110deg,#171717,45%,#a3a3a3,55%,#171717)] bg-[length:200%_100%] text-neutral-300 opacity-0 transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-neutral-400 group-hover:opacity-100"
+                    title="Share QR Code"
+                  >
+                    <IconShare size={20} />
+                  </button>
                 </>
               ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-neutral-400">
